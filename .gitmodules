@@ -1,7 +1,3 @@
-[submodule "slam_toolbox_tf2"]
-	path = slam_toolbox_tf2
-	url = git@github.com:DockDockGo/slam_toolbox_tf2.git
-	branch = ekf_mode
 [submodule "ros2_ws/src/rf2o_laser_odometry"]
 	path = ros2_ws/src/rf2o_laser_odometry
 	url = git@github.com:DockDockGo/rf2o_laser_odometry.git
@@ -9,10 +5,6 @@
 [submodule "ros2_ws/src/repub_velo"]
 	path = ros2_ws/src/repub_velo
 	url = git@github.com:DockDockGo/repub_velo.git
-	branch = ekf_mode
-[submodule "ros2_ws/src/slam_toolbox_tf2"]
-	path = ros2_ws/src/slam_toolbox_tf2
-	url = git@github.com:DockDockGo/slam_toolbox_tf2.git
 	branch = ekf_mode
 [submodule "ros2_ws/src/neo_localization2"]
 	path = ros2_ws/src/neo_localization2

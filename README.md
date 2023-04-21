@@ -1,4 +1,4 @@
-# Packages To Run SLAM Toolbox with Mulitple Odometry Sources
+# Packages To Run SLAM Toolbox with Visual Odometry Only
 
 The packages explained below (some custom made, some forked branches) are needed to run
 mapping and localization on a robot.
@@ -140,52 +140,6 @@ the TF-Tree to work with the visual odometry node publishing tf2 updates. I had 
 dummy connection to sidetrack that tf2 update and not let it interfere with the true
 odom->base_footprint update.
 
-Hence, we choose one of the two methods of odometry at our disposal. (In future updates, wheel
-odometry will be used instead of laser-based odometry since it is more accurate and less
-sensitive to noise).
-
-If you want to use **two or more sensors at a time**, then we will need to use
-**Robot Localization** which is an EKF method of fusing odometry data
-
-### A. 2D Lidar Odometry (rf20 laser odometry)
-
-[Our (slightly modified) Repo](https://github.com/DockDockGo/rf2o_laser_odometry){: .btn .fs-3 .mb-4 .mb-md-0 }
-
-#### Source Notes
-Estimation of 2D odometry based on planar laser scans. Useful for mobile robots with innacurate base odometry.
-
-RF2O is a fast and precise method to estimate the planar motion of a lidar from consecutive range scans. For every scanned point we formulate the range flow constraint equation in terms of the sensor velocity, and minimize a robust function of the resulting geometric constraints to obtain the motion estimate. Conversely to traditional approaches, this method does not search for correspondences but performs dense scan alignment based on the scan gradients, in the fashion of dense 3D visual odometry.
-
-Its very low computational cost (0.9 milliseconds on a single CPU core) together whit its high precission, makes RF2O a suitable method for those robotic applications that require planar odometry.
-
-For full description of the algorithm, please refer to: **Planar Odometry from a Radial Laser Scanner. A Range Flow-based Approach. ICRA 2016** Available at: http://mapir.isa.uma.es/work/rf2o
-
-#### Motivation for Usage
-
-The IMU's available to us at TeamH are the UM7 and the Phidget Spatial 3/3/3. While the phidget
-has issues in interfacing with ROS, the UM7 data is jittery.
-
-Additionally, the lack of wheel odometry during development, means that we can only rely on
-LIDAR odometry to give accurate odometry results. Hence, this package is used to publish odometry data
-
-#### TF2 bindings
-
-The node which publishes odometry data also publishes the transformation between two frames:
-- odom
-- base_footprint
-
-These frames are necessary for the slam_toolbox or any other downstream node.
-
-### B. 3D Lidar Odometry
-
-![](/ros2_ws/images/kiss_icp.png)
-
-Here we will use Kiss ICP since it runs well in ros2 with easy setup.
-
-Refer to [This link](https://github.com/PRBonn/kiss-icp) to learn more about Kiss ICP.
-
-To build Kiss ICP, take a look at [This link](https://github.com/PRBonn/kiss-icp/tree/main/ros)
-
 
 ### C. Visual Odometry (Tracking Camera)
 
@@ -196,27 +150,3 @@ We use the RealSense T265 Tracking Camera by building the ros2 drivers.
 Run the ```rs_intra_process_demo_launch.py``` in ```/realsense-ros/realsense2_camera/launch```
 folder. This will publish something like ```/camera/odometry/sample``` topic which is the
 trakcing camera's odometry topic
-
-
-## Odometry to Update odom->base_footprint Transform (*With EKF*)
-
-We can use EKF to merge two or more of the odometry mentioned above. Now, the TF Tree will get
-modified to below:
-
-![](/ros2_ws/images/tree_with_ekf.png)
-
-We will be using the robot localization package, which is most commonly used to do this
-sort of odometry fusing.
-
-### Source Notes:
-
-[Source Link](http://docs.ros.org/en/noetic/api/robot_localization/html/index.html){: .btn .fs-3 .mb-4 .mb-md-0 }
-
-robot_localization is a collection of state estimation nodes, each of which is an implementation of a nonlinear state estimator for robots moving in 3D space. It contains two state estimation nodes, ekf_localization_node and ukf_localization_node. In addition, robot_localization provides navsat_transform_node, which aids in the integration of GPS data.
-
-### Additional Content: EKF With Single
-
-EKF can also be run with a singular odometry source. It only results in smoothening the inputs.
-
-EKF publish rate, tf_publish true/false and other such params can be set in the config file. If using
-single source odometry, we only comment out which odometry source we don't want in the config file.

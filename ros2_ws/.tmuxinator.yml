@@ -63,16 +63,21 @@ windows:
           - python3 sleep/sleep_short.py
           - source install/setup.bash
           - ros2 launch slam_toolbox_tf2 all_static.launch.py
-        - kiss_icp:
-          - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
-          - python3 sleep/sleep_short.py
-          - source install/setup.bash
-          - ros2 launch kiss_icp odometry.launch.py topic:=/velodyne_points
+        # - kiss_icp:
+        #   - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
+        #   - python3 sleep/sleep_short.py
+        #   - source install/setup.bash
+        #   - ros2 launch kiss_icp odometry.launch.py topic:=/velodyne_points
         - visual_odom:
           - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
           - python3 sleep/sleep_short.py
           - source install/setup.bash
           - ros2 launch realsense2_camera rs_t265_launch.py
+        # - ekf:
+        #   - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
+        #   - python3 sleep/sleep_short.py
+        #   - source install/setup.bash
+        #   - ros2 launch robot_loc_launch custom_fusion.launch.py
         - RVIZ:
           - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
           - source install/setup.bash
@@ -82,6 +87,6 @@ windows:
           - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
           - python3 sleep/sleep.py
           - source install/setup.bash
-          - ros2 launch neo_localization2 neo_loc.launch.py map:=/home/sush/mfi/ros2_ws/maps+frames_single_odom_source/full_map_two.yaml params_file:=/home/sush/mfi/ros2_ws/nav2_params.yaml use_sim_time:=false
+          - ros2 launch neo_localization2 neo_loc.launch.py map:=/home/sush/mfi/ros2_ws/fourth_floor/full_map_one.yaml params_file:=/home/sush/mfi/ros2_ws/nav2_params.yaml use_sim_time:=false
   - server: bundle exec rails s
   - logs: tail -f log/development.log
