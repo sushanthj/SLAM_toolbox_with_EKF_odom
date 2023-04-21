@@ -76,8 +76,8 @@ windows:
         - RVIZ:
           - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
           - source install/setup.bash
-          # - rviz2
-          - ros2 launch neo_localization2 rviz.launch.py
+          - rviz2
+          # - ros2 launch neo_localization2 rviz.launch.py
         - AMCL:
           - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
           - python3 sleep/sleep.py
