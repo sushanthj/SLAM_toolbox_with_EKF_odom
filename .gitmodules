@@ -14,3 +14,13 @@
 	path = ros2_ws/src/slam_toolbox_tf2
 	url = git@github.com:DockDockGo/slam_toolbox_tf2.git
 	branch = ekf_mode
+[submodule "ros2_ws/src/neo_localization2"]
+	path = ros2_ws/src/neo_localization2
+	url = git@github.com:DockDockGo/neo_localization2.git
+	branch = foxy
+[submodule "ros2_ws/src/neo_common2"]
+	path = ros2_ws/src/neo_common2
+	url = https://github.com/neobotix/neo_common2.git
+[submodule "ros2_ws/src/velodyne"]
+	path = ros2_ws/src/velodyne
+	url = git@github.com:DockDockGo/velodyne.git
