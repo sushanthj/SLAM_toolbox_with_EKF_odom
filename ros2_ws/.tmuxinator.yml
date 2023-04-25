@@ -81,12 +81,15 @@ windows:
         - RVIZ:
           - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
           - source install/setup.bash
-          - rviz2
+          - ros2 run rviz2 rviz2 -d /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws/src/neo_localization2/rviz/single_robot.rviz
           # - ros2 launch neo_localization2 rviz.launch.py
         - AMCL:
           - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
           - python3 sleep/sleep.py
           - source install/setup.bash
-          - ros2 launch neo_localization2 neo_loc.launch.py map:=/home/sush/mfi/ros2_ws/fourth_floor/full_map_one.yaml params_file:=/home/sush/mfi/ros2_ws/nav2_params.yaml use_sim_time:=false
+          - ros2 launch neo_localization2 neo_loc.launch.py map:=/home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws/maps+frames_single_odom_source/full_map_two.yaml params_file:=/home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws/nav2_params.yaml use_sim_time:=false
+        - validation:
+          - cd /home/sush/mfi/SLAM_toolbox_with_EKF_odom/ros2_ws
+          - source install/setup.bash
   - server: bundle exec rails s
   - logs: tail -f log/development.log
