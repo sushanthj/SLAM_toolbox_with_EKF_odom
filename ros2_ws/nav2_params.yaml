@@ -24,14 +24,14 @@ neo_localization2_node:
     min_score: 0.2
     # odometry error in x and y [m/m] [1]
     #    how fast to increase particle spread when in 1D / 0D mode
-    odometry_std_xy: 0.01
+    odometry_std_xy: 0.1
     # odometry error in yaw angle [rad/rad] [1]
     #    how fast to increase particle spread when in 0D mode
     odometry_std_yaw: 0.01
     # minimum particle spread in x and y [m]
-    min_sample_std_xy: 0.025
+    min_sample_std_xy: 0.5
     # minimum particle spread in yaw angle [rad]
-    min_sample_std_yaw: 0.025
+    min_sample_std_yaw: 0.5
     # initial/maximum particle spread in x and y [m]
     max_sample_std_xy: 0.5
     # initial/maximum particle spread in yaw angle [rad]
@@ -45,13 +45,13 @@ neo_localization2_node:
     #   higher values will make it go into 1D mode earlier
     constrain_threshold_yaw: 0.2
     # minimum number of points per update
-    min_points: 20
+    min_points: 100
     # solver update gain, lower gain = more stability / slower convergence
     solver_gain: 0.1
     # solver update damping, higher damping = more stability / slower convergence
     solver_damping: 1000.0
     # number of gauss-newton iterations per sample per scan
-    solver_iterations: 20
+    solver_iterations: 50
     # maximum wait for getting transforms [s]
     transform_timeout: 0.2
     # if to broadcast map frame
