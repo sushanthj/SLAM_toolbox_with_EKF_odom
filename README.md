@@ -4,6 +4,13 @@ The packages explained below (some custom made, some forked branches) are needed
 mapping and localization on a robot.
 
 
+# Easy Start
+
+- Install tmux ```sudo apt install tmux```  and [tmuxinator](https://github.com/tmuxinator/tmuxinator)
+- Navigate to the ros2_ws folder
+- Run this command ```tmuxinator localization```
+- All the required ros nodes should start running and rviz should also launch
+
 # Nodes to Start
 
 - velodyne
@@ -150,3 +157,5 @@ We use the RealSense T265 Tracking Camera by building the ros2 drivers.
 Run the ```rs_intra_process_demo_launch.py``` in ```/realsense-ros/realsense2_camera/launch```
 folder. This will publish something like ```/camera/odometry/sample``` topic which is the
 trakcing camera's odometry topic
+
+
